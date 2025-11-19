@@ -1,4 +1,4 @@
-## Neural
+## Neural Module
 Module containing various neural network architectures that can be created, trained, and deployed.
 
 ### Weight Initialization Functions (initializer.py)
