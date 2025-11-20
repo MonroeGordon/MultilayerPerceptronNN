@@ -577,27 +577,33 @@ class MultilayerPerceptronNN:
         loss = []
 
         if self._device == "cpu":
-            if not isinstance(x, np.ndarray):
-                raise TypeError("MultilayerPerceptronNN @ train: x must be a numpy ndarray when using cpu device.")
+            nx = x
+            ny = y
 
-            if not isinstance(y, np.ndarray):
-                raise TypeError("MultilayerPerceptronNN @ train: y must be a numpy ndarray when using cpu device.")
+            if isinstance(nx, cp.ndarray):
+                nx = cp.asnumpy(nx)
+
+            if isinstance(ny, cp.ndarray):
+                ny = cp.asnumpy(ny)
 
             for epoch in range(epochs):
-                self._forward(x)
-                self._backward(y)
+                self._forward(nx)
+                self._backward(ny)
                 loss.append(self._output_layer.loss)
                 self._cycle += 1
         else:
-            if not isinstance(x, cp.ndarray):
-                raise TypeError("MultilayerPerceptronNN @ train: x must be a cupy ndarray when using gpu device.")
+            cx = x
+            cy = y
 
-            if not isinstance(y, cp.ndarray):
-                raise TypeError("MultilayerPerceptronNN @ train: y must be a cupy ndarray when using gpu device.")
+            if isinstance(cx, np.ndarray):
+                cx = cp.asarray(cx)
+
+            if isinstance(cy, np.ndarray):
+                cy = cp.asarray(cy)
 
             for epoch in range(epochs):
-                self._forward_gpu(x)
-                self._backward_gpu(y)
+                self._forward_gpu(cx)
+                self._backward_gpu(cy)
                 loss.append(self._output_layer.loss)
                 self._cycle += 1
 
@@ -609,12 +615,16 @@ class MultilayerPerceptronNN:
         :param x: Input data.
         '''
         if self._device == "cpu":
-            if not isinstance(x, np.ndarray):
-                raise TypeError("MultilayerPerceptronNN @ test: x must be a numpy ndarray when using cpu device.")
+            nx = x
 
-            return self._forward(x)
+            if isinstance(nx, cp.ndarray):
+                nx = cp.asnumpy(nx)
+
+            return self._forward(nx)
         else:
-            if not isinstance(x, cp.ndarray):
-                raise TypeError("MultilayerPerceptronNN @ test: x must be a cupy ndarray when using gpu device.")
+            cx = x
 
-            return self._forward_gpu(x)
+            if isinstance(cx, np.ndarray):
+                cx = cp.asarray(cx)
+
+            return self._forward_gpu(cx)
