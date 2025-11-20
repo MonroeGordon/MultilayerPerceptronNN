@@ -59,6 +59,12 @@ Details:
   - Momentum
   - NAG: Nesterov Accelerated Gradient
   - RMSProp: Root-Mean-Sqaure Propagation
+ 
+### Logistic Regression (logreg.py)
+Logistic regression uses the logistic or sigmoid function to calculate the probability of a binary event occurring in one direction or the other. Since logistic regression tries to find optimal coeffiecients for the inputs, it is modeled as a single layer neural network with a single sigmoid output neuron. Using backpropagation, the coefficients are equivalent to weights in the neural network, thereby allowing the model to learn the optimal values using the same regularization and optimization functions used by neural networks. Being a binary classification model, binary cross entropy is used for the loss function, making its negation the log likelihood of the positive binary event occurring.
+
+Details:
+- **LogisticRegression**: Creates a logistic regression model as a single layer neural network with a single sigmoid output neuron. The model uses the Adam optimization function and has an optional regularization function that can be set, as well as a tolerance parameter that defines the stopping criteria during training. When the difference between the previous loss value and the current loss value is less than the tolerance value, training stops. After training, the model can predict the probability of output for new inputs. Methods for calculating the log likelihood between true and predicted values and for calculating the accuracy of predictions are available.
 
 ### Multilayer Perceptron Neural Network (mlp.py)
 A multilayer perceptron neural network is a feedforward neural network with an input layer, hidden layer(s), amd an output layer. Each layer can have a differing number of neurons, but all neurons in a layer, typically, use the same activation function for processing their inputs. All neurons in a layer are connected to the next layer, with each connection having a weight. These weights are adjusted using backpropgation to get the network to align its outputs in the output layer with the true values pertaining to each input it is trained on. After training on a large number of example input/output pairs, a multilayer perceptron neural network can learn the pattern in the data, allowing it to predict the correct outputs for new inputs it was not trained on.
