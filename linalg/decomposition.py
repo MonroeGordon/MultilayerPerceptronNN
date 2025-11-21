@@ -38,7 +38,7 @@ def lu(matrix: np.ndarray | cp.ndarray,
         return clu(cmtx, permute_l, overwrite_matrix, check_finite)
 
 def svd(matrix: np.ndarray | cp.ndarray,
-        device: str="cpu") -> tuple[np.ndarray | cp.ndarray]:
+        device: str="cpu") -> tuple[np.ndarray | cp.ndarray, np.ndarray | cp.ndarray, np.ndarray | cp.ndarray]:
     '''
     Perform Singular Value Decomposition (SVD) on a matrix.
     :param matrix: Input matrix (2-dimensional ndarray).
@@ -46,6 +46,8 @@ def svd(matrix: np.ndarray | cp.ndarray,
     :return: U, S, V matrices.
     '''
     if device == "cpu":
-        return np.linalg.svd(matrix)
+        u, s, v = np.linalg.svd(matrix)
     else:
-        return cp.linalg.svd(matrix)
+        u, s, v = cp.linalg.svd(matrix)
+
+    return u, s, v

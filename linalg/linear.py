@@ -131,7 +131,7 @@ def lu_solve(a: np.ndarray | cp.ndarray,
 
     br = b.flatten()
 
-    l, u = lu(a, br)
+    l, u = lu(a, permute_l=True, device=device)
 
     y = _forward_substitution(l, br, device)
 
