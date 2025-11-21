@@ -5,4 +5,7 @@ Module containing machine learning and AI algorithms that are separate from mode
 Contains a class for predicting class labels or target values using the K-nearest neighbors algorithm.
 
 Details:
-- **KNearestNeighbor**: 
+- **KNearestNeighbor**: Class containing functions for predicting class labels or target values.
+  - predict: Predicts class labels for the test data after training on the training data.
+  - regression: Predicts target values for the test data after training on the training data.
+  - find_optimal_k: Finds the best K value using cross-validation on the dataset.
