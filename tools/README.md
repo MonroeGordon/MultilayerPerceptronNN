@@ -13,7 +13,7 @@ Provides tools for data processing.
 Details:
 - _Class Proportions_: Returns the proportion of the total dataset that each class value takes up.
 - _Class Values_: Returns the unique class values in the dataset.
-- _PCA Data Reconstruct_: Reconstructs a data matrix from a data matrix with dimensions reduced by PCA and its eigenvectors.
+- _PCA Data Reconstruction_: Reconstructs a data matrix from a data matrix with dimensions reduced by PCA and its eigenvectors.
 - _Train Test Split_: Splits a dataset into training and test sets.
 
 ### Metrics (metrics.py)
@@ -33,4 +33,5 @@ Provides tools for dimensionality reduction via various algorithms.
 
 Details:
 - _LDA Projection_: Reduces the dimensionality of a matrix using a linear discriminant analysis (LDA) matrix projection.
+- _PCA Dimensionality Reduction_: Reduces the dimensionaluty of a matrix using principal component analysis (PCA).
 - _SVD Dimensionality Reduction_: Reduces the dimensionality of a matrix using singular value decomposition (SVD).
