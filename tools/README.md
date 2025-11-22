@@ -13,6 +13,7 @@ Provides tools for data processing.
 Details:
 - _Class Proportions_: Returns the proportion of the total dataset that each class value takes up.
 - _Class Values_: Returns the unique class values in the dataset.
+- _PCA Data Reconstruct_: Reconstructs a data matrix from a data matrix with dimensions reduced by PCA and its eigenvectors.
 - _Train Test Split_: Splits a dataset into training and test sets.
 
 ### Metrics (metrics.py)
