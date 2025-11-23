@@ -33,6 +33,7 @@ Module containing various tools to aid in the training, testing, and/or deployme
 Details:
 - Compression
 - Data processing
+- Datasets
 - Metrics
 - Data plotting
 - Dimensionality reduction
