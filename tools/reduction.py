@@ -41,7 +41,7 @@ def pca_dim_reduction(x: np.ndarray | cp.ndarray,
         return cp.dot(cx - cp.mean(cx, axis=0), w)
 
 def lda_projection(x: np.ndarray | cp.ndarray,
-                   y: list,
+                   y: np.ndarray | cp.ndarray,
                    n_components: int,
                    device: str = "cpu") -> tuple:
     '''
@@ -55,26 +55,32 @@ def lda_projection(x: np.ndarray | cp.ndarray,
     if x.ndim != 2:
         raise ValueError("@ lda_projection: parameter 'x' must be a matrix (2-dimensional ndarray).")
 
+    if y.ndim != 1:
+        raise ValueError("@ lda_projection: parameter 'y' must be a vector (1-dimensional ndarray).")
+
+    if y.shape[0] != x.shape[0]:
+        raise ValueError("@ lda_projection: parameter 'y' shape[0] must equal parameter 'x' shape[0].")
+
     means = LDA.means(x, y, device)
     sw = LDA.within_class_scatter(x, y, means, device)
     sb = LDA.between_class_scatter(x, y, means, device)
 
     if device == "cpu":
-        e_vals, e_vecs = eigen(np.linalg.inv(sw).dot(sb))
+        e_vals, e_vecs = eigen(np.linalg.inv(sw).dot(sb), device=device)
 
         sorted_indices = np.argsort(e_vals)[::-1]
         e_vecs = e_vecs[:, sorted_indices]
 
         w = e_vecs[:, :n_components]
     else:
-        e_vals, e_vecs = eigen(cp.linalg.inv(sw).dot(sb))
+        e_vals, e_vecs = eigen(cp.linalg.inv(sw).dot(sb), device=device)
 
         sorted_indices = cp.argsort(e_vals)[::-1]
         e_vecs = e_vecs[:, sorted_indices]
 
         w = e_vecs[:, :n_components]
 
-    return x.dot(w), w
+    return LDA.transform(x, w, device), w
 
 def svd_dim_reduction(matrix: np.ndarray | cp.ndarray,
                       k: int,
