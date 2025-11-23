@@ -37,3 +37,9 @@ Details:
 - Metrics
 - Data plotting
 - Dimensionality reduction
+
+### Datasets Folder
+Folder containing all available datasets that can be loaded by this library,
+
+Details:
+- Iris Flower Dataset (iris.csv)
