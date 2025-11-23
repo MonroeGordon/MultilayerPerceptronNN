@@ -13,4 +13,4 @@ def svd_img_compression(matrix: np.ndarray | cp.ndarray,
     :param device: CPU or GPU device.
     :return: Compressed image matrix.
     '''
-    svd_dim_reduction(matrix, k, device)
+    return svd_dim_reduction(matrix, k, device)
