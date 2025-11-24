@@ -49,7 +49,7 @@ class KNN:
 
                 k_indices = np.argsort(distances)[:k]
 
-                k_nearest_labels = [ny_train[i] for i in k_indices]
+                k_nearest_labels = [float(ny_train[i]) for i in k_indices]
 
                 most_common = Counter(k_nearest_labels).most_common(1)
                 predictions.append(most_common[0][0])
@@ -132,7 +132,7 @@ class KNN:
                 cx_train = cp.asarray(cx_train)
 
             if isinstance(cy_train, np.ndarray):
-                cy_train = cp.asarray(cy_train)
+                cy_train = cp.asarray(cy_train.astype(np.float32))
 
             if isinstance(cx_test, cp.ndarray):
                 cx_test = cp.asarray(cx_test)
