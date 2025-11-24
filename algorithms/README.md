@@ -6,7 +6,7 @@ Contains a class for clustering data points into clusters using the K-means clus
 
 Details:
 - **KMeans**: Class containing a function for clustering data points using K-means clustering.
-  - _cluster_: Cluster data points into the specified number of clusters using K-means clustering.
+  - _Cluster_: Cluster data points into the specified number of clusters using K-means clustering.
 
 ### K-Nearest Neighbors (knn.py)
 Contains a class for predicting class labels or target values using the K-nearest neighbors algorithm.
